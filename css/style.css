@@ -701,7 +701,7 @@ img {
 }
 
 /* Mobile Large */
-@media (max-width: 768px) {
+@media (max-width: 935px) {
     .container {
         padding: 0 16px;
     }
