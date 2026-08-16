@@ -39,7 +39,7 @@ function sendGAEvent(eventName, eventData = {}) {
 // Function to send event to Yandex Metrika
 function sendYandexEvent(targetName) {
     if (typeof ym === 'function') {
-        ym('XXXXXXXX', 'reachGoal', 'cta_click', {
+        ym('111652064', 'reachGoal', 'cta_click', {
             target: targetName
         });
     }
