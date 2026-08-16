@@ -77,7 +77,9 @@ img {
 
 /* Buttons */
 .cta-button {
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     padding: 14px 32px;
     border-radius: 50px;
     font-weight: 700;
@@ -87,6 +89,11 @@ img {
     border: none;
     font-family: 'Inter', sans-serif;
     text-align: center;
+    line-height: 1.2;
+    box-sizing: border-box;
+    min-height: 52px;
+    gap: 8px;
+    -webkit-font-smoothing: antialiased;
 }
 
 .cta-primary {
@@ -105,12 +112,6 @@ img {
     background: transparent;
     color: var(--text-dark);
     border: 2px solid var(--text-dark);
-    padding: 12px 32px;
-    line-height: 1.4;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    box-sizing: border-box;
 }
 
 .cta-secondary:hover {
@@ -122,6 +123,19 @@ img {
 .cta-large {
     padding: 18px 48px;
     font-size: 1.125rem;
+    min-height: 60px;
+}
+
+/* Специфичные стили для кнопок в CTA секции */
+.cta-buttons .cta-secondary {
+    border-color: rgba(255, 255, 255, 0.5);
+    color: white;
+}
+
+.cta-buttons .cta-secondary:hover {
+    background: white;
+    color: var(--primary);
+    border-color: white;
 }
 
 /* Header */
@@ -153,6 +167,12 @@ img {
 .logo-icon {
     width: 40px;
     height: 40px;
+    flex-shrink: 0;
+}
+
+.logo img {
+    width: 50px;
+    height: 50px;
     flex-shrink: 0;
 }
 
@@ -272,7 +292,8 @@ img {
     color: var(--text-light);
 }
 
-.hero-image img {
+.hero-image img,
+.hero-image svg {
     border-radius: var(--radius);
     box-shadow: var(--shadow);
     width: 100%;
@@ -355,14 +376,16 @@ img {
     overflow: hidden;
 }
 
-.card-image img {
+.card-image img,
+.card-image svg {
     width: 100%;
     height: 220px;
     object-fit: cover;
     transition: var(--transition);
 }
 
-.card:hover .card-image img {
+.card:hover .card-image img,
+.card:hover .card-image svg {
     transform: scale(1.05);
 }
 
@@ -412,8 +435,16 @@ img {
 }
 
 .card-icon {
-    font-size: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     padding: 24px 24px 0;
+}
+
+.card-icon svg {
+    width: 48px;
+    height: 48px;
+    color: rgba(255, 255, 255, 0.9);
 }
 
 /* Shop Grid */
@@ -427,13 +458,17 @@ img {
 }
 
 .shop-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 24px 16px;
     background: var(--bg-white);
     border-radius: var(--radius);
-    overflow: hidden;
     box-shadow: var(--shadow);
     transition: var(--transition);
     text-align: center;
-    padding-bottom: 16px;
+    min-height: 200px;
 }
 
 .shop-item:hover {
@@ -441,33 +476,56 @@ img {
     box-shadow: var(--shadow-hover);
 }
 
-.shop-item img {
-    width: 100%;
-    height: 200px;
-    object-fit: cover;
+.shop-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 80px;
+    height: 80px;
+    background: rgba(77, 188, 21, 0.1);
+    border-radius: 50%;
+    margin-bottom: 16px;
+    transition: var(--transition);
+}
+
+.shop-item:hover .shop-icon {
+    background: rgba(77, 188, 21, 0.2);
+    transform: scale(1.05);
+}
+
+.shop-icon svg {
+    width: 40px;
+    height: 40px;
 }
 
 .shop-item h4 {
-    margin: 12px 0 8px;
+    margin: 0 0 8px;
+    font-size: 1.1rem;
+    font-weight: 700;
 }
 
 .shop-item a {
     color: var(--primary);
     font-weight: 700;
     transition: var(--transition);
+    font-size: 0.95rem;
 }
 
 .shop-item a:hover {
     color: var(--primary-dark);
 }
 
-/* Pro Section */
+/* Pro Section - ИСПРАВЛЕНО */
 .section-pro {
     background: var(--text-dark);
     color: white;
     border-radius: var(--radius);
     margin: 40px 24px;
     padding: 60px;
+    overflow: hidden;
+    width: auto;
+    max-width: calc(100% - 48px);
+    box-sizing: border-box;
 }
 
 .pro-content {
@@ -477,6 +535,8 @@ img {
     align-items: center;
     max-width: 1200px;
     margin: 0 auto;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .pro-text .section-tag {
@@ -498,12 +558,23 @@ img {
 }
 
 .pro-features li {
-    padding: 8px 0;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 0;
     color: rgba(255, 255, 255, 0.9);
     font-weight: 500;
+    word-break: break-word;
 }
 
-.pro-image img {
+.pro-features li svg {
+    flex-shrink: 0;
+    width: 20px;
+    height: 20px;
+}
+
+.pro-image img,
+.pro-image svg {
     border-radius: var(--radius);
     width: 100%;
     height: 300px;
@@ -538,17 +609,6 @@ img {
     gap: 16px;
     justify-content: center;
     flex-wrap: wrap;
-}
-
-.cta-buttons .cta-secondary {
-    border-color: rgba(255, 255, 255, 0.5);
-    color: white;
-}
-
-.cta-buttons .cta-secondary:hover {
-    background: white;
-    color: var(--primary);
-    border-color: white;
 }
 
 /* Footer */
@@ -602,7 +662,7 @@ img {
 }
 
 /* ============================================
-   MOBILE RESPONSIVE (FIXED MARGINS)
+   MOBILE RESPONSIVE
    ============================================ */
 
 /* Tablet */
@@ -629,6 +689,10 @@ img {
     .section-pro {
         margin: 30px 16px;
         padding: 40px 24px;
+        max-width: calc(100% - 32px);
+    }
+    .pro-content {
+        gap: 40px;
     }
     .cta-section {
         margin: 30px 16px 40px;
@@ -689,7 +753,8 @@ img {
         gap: 24px;
         flex-wrap: wrap;
     }
-    .hero-image img {
+    .hero-image img,
+    .hero-image svg {
         aspect-ratio: 4/3;
     }
 
@@ -713,17 +778,42 @@ img {
         padding: 0 16px;
     }
 
+    .shop-item {
+        min-height: 160px;
+        padding: 16px;
+    }
+    
+    .shop-icon {
+        width: 60px;
+        height: 60px;
+    }
+    
+    .shop-icon svg {
+        width: 32px;
+        height: 32px;
+    }
+    
+    .card-icon svg {
+        width: 40px;
+        height: 40px;
+    }
+
     .section-pro {
         margin: 24px 16px;
         padding: 32px 20px;
+        max-width: calc(100% - 32px);
         border-radius: var(--radius);
     }
     .pro-content {
         grid-template-columns: 1fr;
         gap: 32px;
     }
-    .pro-image img {
+    .pro-image img,
+    .pro-image svg {
         height: 200px;
+    }
+    .pro-text h2 {
+        font-size: 1.75rem;
     }
 
     .cta-section {
@@ -802,12 +892,50 @@ img {
         padding: 0 16px;
     }
 
+    .shop-item {
+        min-height: 140px;
+        padding: 12px;
+    }
+    
+    .shop-icon {
+        width: 50px;
+        height: 50px;
+    }
+    
+    .shop-icon svg {
+        width: 28px;
+        height: 28px;
+    }
+
     .section-pro {
-        padding: 24px 16px;
-        margin: 16px;
+        margin: 16px 12px;
+        padding: 20px 16px;
+        max-width: calc(100% - 24px);
+        border-radius: var(--radius-sm);
+    }
+    .pro-content {
+        gap: 24px;
     }
     .pro-text h2 {
         font-size: 1.5rem;
+    }
+    .pro-text p {
+        font-size: 0.95rem;
+    }
+    .pro-features li {
+        font-size: 0.9rem;
+        padding: 6px 0;
+        gap: 10px;
+        word-break: break-word;
+    }
+    .pro-features li svg {
+        width: 18px;
+        height: 18px;
+        flex-shrink: 0;
+    }
+    .pro-image img,
+    .pro-image svg {
+        height: 160px;
     }
 
     .cta-section {
@@ -822,21 +950,14 @@ img {
         padding: 16px;
     }
 
-    .shop-item img {
-        height: 160px;
-    }
-
     .cta-button {
         padding: 12px 24px;
         font-size: 0.95rem;
+        min-height: 48px;
     }
 
     .footer-content {
         gap: 16px;
-    }
-
-    .pro-features li {
-        font-size: 0.95rem;
     }
 
     .hero {
@@ -906,6 +1027,7 @@ img {
     .cta-button {
         padding: 10px 16px;
         font-size: 0.85rem;
+        min-height: 44px;
     }
     .logo-text {
         font-size: 1.2rem;
@@ -914,133 +1036,73 @@ img {
         width: 32px;
         height: 32px;
     }
-}
-
-/* Shop Icons */
-.shop-item {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 24px 16px;
-    background: var(--bg-white);
-    border-radius: var(--radius);
-    box-shadow: var(--shadow);
-    transition: var(--transition);
-    text-align: center;
-    min-height: 200px;
-}
-
-.shop-item:hover {
-    transform: translateY(-4px);
-    box-shadow: var(--shadow-hover);
-}
-
-.shop-icon {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 80px;
-    height: 80px;
-    background: rgba(77, 188, 21, 0.1);
-    border-radius: 50%;
-    margin-bottom: 16px;
-    transition: var(--transition);
-}
-
-.shop-item:hover .shop-icon {
-    background: rgba(77, 188, 21, 0.2);
-    transform: scale(1.05);
-}
-
-.shop-icon svg {
-    width: 40px;
-    height: 40px;
-}
-
-.shop-item h4 {
-    margin: 0 0 8px;
-    font-size: 1.1rem;
-    font-weight: 700;
-}
-
-.shop-item a {
-    color: var(--primary);
-    font-weight: 700;
-    transition: var(--transition);
-    font-size: 0.95rem;
-}
-
-.shop-item a:hover {
-    color: var(--primary-dark);
-}
-
-/* Card Icons */
-.card-icon {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 24px 24px 0;
-}
-
-.card-icon svg {
-    width: 48px;
-    height: 48px;
-    color: rgba(255, 255, 255, 0.9);
-}
-
-/* Pro Features with SVG */
-.pro-features li {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    padding: 10px 0;
-    color: rgba(255, 255, 255, 0.9);
-    font-weight: 500;
-}
-
-.pro-features li svg {
-    flex-shrink: 0;
-    width: 20px;
-    height: 20px;
-}
-
-/* Mobile adjustments */
-@media (max-width: 768px) {
-    .shop-item {
-        min-height: 160px;
-        padding: 16px;
+    .logo img {
+        width: 36px;
+        height: 36px;
     }
-    
+
+    .section-pro {
+        margin: 12px 8px;
+        padding: 16px 12px;
+        max-width: calc(100% - 16px);
+        border-radius: var(--radius-sm);
+    }
+    .pro-text h2 {
+        font-size: 1.3rem;
+    }
+    .pro-text p {
+        font-size: 0.85rem;
+    }
+    .pro-features li {
+        font-size: 0.8rem;
+        padding: 5px 0;
+        gap: 8px;
+        word-break: break-word;
+    }
+    .pro-features li svg {
+        width: 14px;
+        height: 14px;
+        flex-shrink: 0;
+    }
+    .pro-image img,
+    .pro-image svg {
+        height: 130px;
+    }
+
+    .cta-section {
+        padding: 24px 12px;
+        margin: 12px 8px 24px;
+    }
+    .cta-content h2 {
+        font-size: 1.2rem;
+    }
+    .cta-content p {
+        font-size: 0.85rem;
+    }
+
+    .shop-item {
+        min-height: 120px;
+        padding: 10px;
+    }
     .shop-icon {
-        width: 60px;
-        height: 60px;
+        width: 44px;
+        height: 44px;
     }
-    
     .shop-icon svg {
-        width: 32px;
-        height: 32px;
+        width: 24px;
+        height: 24px;
     }
-    
-    .card-icon svg {
-        width: 40px;
-        height: 40px;
+    .shop-item h4 {
+        font-size: 0.95rem;
     }
-}
 
-@media (max-width: 480px) {
-    .shop-item {
-        min-height: 140px;
+    .card-content {
         padding: 12px;
     }
-    
-    .shop-icon {
-        width: 50px;
-        height: 50px;
+    .card-content h3 {
+        font-size: 1.1rem;
     }
-    
-    .shop-icon svg {
-        width: 28px;
-        height: 28px;
+    .card-content p {
+        font-size: 0.85rem;
     }
 }
