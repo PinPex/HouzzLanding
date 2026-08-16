@@ -126,7 +126,6 @@ img {
     min-height: 60px;
 }
 
-/* Специфичные стили для кнопок в CTA секции */
 .cta-buttons .cta-secondary {
     border-color: rgba(255, 255, 255, 0.5);
     color: white;
@@ -138,7 +137,10 @@ img {
     border-color: white;
 }
 
-/* Header */
+/* ============================================
+   HEADER С AUTO-HIDE
+   ============================================ */
+
 .header {
     padding: 20px 0;
     background: var(--bg-white);
@@ -147,6 +149,26 @@ img {
     top: 0;
     z-index: 1000;
     width: 100%;
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s ease;
+}
+
+.header-hidden {
+    transform: translateY(-100%);
+    box-shadow: none;
+}
+
+.header-hidden .nav {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.nav {
+    transition: opacity 0.3s ease;
+}
+
+.header-hidden .mobile-menu-btn {
+    opacity: 0;
+    pointer-events: none;
 }
 
 .header-content {
@@ -515,7 +537,7 @@ img {
     color: var(--primary-dark);
 }
 
-/* Pro Section - ИСПРАВЛЕНО */
+/* Pro Section */
 .section-pro {
     background: var(--text-dark);
     color: white;
@@ -1010,7 +1032,7 @@ img {
     }
 }
 
-/* iPhone SE и очень маленькие экраны */
+/* iPhone SE and very small */
 @media (max-width: 380px) {
     h1 {
         font-size: 1.5rem;

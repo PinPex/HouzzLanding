@@ -18,6 +18,36 @@ document.querySelectorAll('.nav-link').forEach(link => {
 });
 
 // ============================================
+// AUTO-HIDE HEADER
+// ============================================
+
+let lastScrollY = window.scrollY;
+const header = document.querySelector('.header');
+let isHeaderHidden = false;
+
+function handleHeaderScroll() {
+    const currentScrollY = window.scrollY;
+    const scrollDelta = currentScrollY - lastScrollY;
+    
+    if (scrollDelta > 50 && currentScrollY > 100) {
+        if (!isHeaderHidden) {
+            header.classList.add('header-hidden');
+            isHeaderHidden = true;
+        }
+    } 
+    else if (scrollDelta < -20 || currentScrollY < 50) {
+        if (isHeaderHidden) {
+            header.classList.remove('header-hidden');
+            isHeaderHidden = false;
+        }
+    }
+    
+    lastScrollY = currentScrollY;
+}
+
+window.addEventListener('scroll', handleHeaderScroll, { passive: true });
+
+// ============================================
 // ANALYTICS TRACKING
 // ============================================
 
