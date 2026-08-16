@@ -29,13 +29,13 @@ function handleHeaderScroll() {
     const currentScrollY = window.scrollY;
     const scrollDelta = currentScrollY - lastScrollY;
     
-    if (scrollDelta > 50 && currentScrollY > 100) {
+    if (scrollDelta > 0 && currentScrollY > 0) {
         if (!isHeaderHidden) {
             header.classList.add('header-hidden');
             isHeaderHidden = true;
         }
     } 
-    else if (scrollDelta < -20 || currentScrollY < 50) {
+    else if (scrollDelta < 0 || currentScrollY < 0) {
         if (isHeaderHidden) {
             header.classList.remove('header-hidden');
             isHeaderHidden = false;
